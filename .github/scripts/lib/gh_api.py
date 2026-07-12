@@ -92,3 +92,31 @@ def latest_pages_deployment_status(repo: Repository) -> str | None:
     latest = deployments[0]
     statuses = list(latest.get_statuses())
     return statuses[0].state if statuses else None
+
+
+def read_repo_file(repo: Repository, path: str, ref: str = "main") -> str | None:
+    """
+    Read a file's content from a specific branch via the API -- not the
+    local checkout, which may be on a different branch (a feature branch
+    or PR that forked before this file last changed on `ref`).
+    """
+    try:
+        content_file = repo.get_contents(path, ref=ref)
+    except Exception:
+        return None
+    return content_file.decoded_content.decode("utf-8")
+
+
+def write_repo_file(
+    repo: Repository, path: str, content: str, message: str, ref: str = "main"
+) -> None:
+    """
+    Create or update a file directly on `ref` via the API -- this is how
+    progress state gets persisted, deliberately independent of whichever
+    branch triggered the check that produced it.
+    """
+    try:
+        existing = repo.get_contents(path, ref=ref)
+        repo.update_file(path, message, content, existing.sha, branch=ref)
+    except Exception:
+        repo.create_file(path, message, content, branch=ref)
