@@ -29,6 +29,7 @@ class Entry:
     date: str = field(default_factory=lambda: date.today().isoformat())
 
     def __post_init__(self) -> None:
+        self.category = self.category.lower()
         if self.category not in VALID_CATEGORIES:
             raise RelnotesError(
                 f"Unknown category {self.category!r}. "
