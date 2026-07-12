@@ -1,4 +1,6 @@
 {
-  "completed": [],
-  "current_mission": 0
+  "completed": [
+    0
+  ],
+  "current_mission": 1
 }

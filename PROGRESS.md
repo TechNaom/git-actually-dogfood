@@ -2,7 +2,7 @@
 
 Bot-updated -- don't hand-edit the checkmarks.
 
-- [ ] Mission 00: Setup
+- [x] Mission 00: Setup
 - [ ] Mission 01: First real commit
 - [ ] Mission 02: Branch & merge
 - [ ] Mission 03: Handle a real merge conflict
