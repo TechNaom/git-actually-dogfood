@@ -1,7 +1,6 @@
 # Progress
 
-Bot-updated -- don't hand-edit the checkmarks. Push once (even an empty
-commit) to wake up Mission Check and get started.
+Bot-updated -- don't hand-edit the checkmarks.
 
 - [ ] Mission 00: Setup
 - [ ] Mission 01: First real commit
