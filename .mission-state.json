@@ -2,8 +2,9 @@
   "completed": [
     0,
     1,
-    2
+    2,
+    3
   ],
-  "current_mission": 3,
+  "current_mission": 4,
   "feature_branch": "feature/add-category-field"
 }
