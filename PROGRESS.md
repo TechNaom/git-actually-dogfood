@@ -5,7 +5,7 @@ Bot-updated -- don't hand-edit the checkmarks.
 - [x] Mission 00: Setup
 - [x] Mission 01: First real commit
 - [x] Mission 02: Branch & merge
-- [ ] Mission 03: Handle a real merge conflict
+- [x] Mission 03: Handle a real merge conflict
 - [ ] Mission 04: Push & open a real PR
 - [ ] Mission 05: CI runs on your PR
 - [ ] Mission 06: Real code review
