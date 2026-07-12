@@ -1,0 +1,55 @@
+name: Mission Check
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_run:
+    workflows: ["CI", "Deploy"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mission:
+        description: "Mission number to check (leave blank to check your current one)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+  deployments: read
+
+concurrency:
+  group: mission-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check mission progress
+    runs-on: ubuntu-latest
+    if: github.repository != 'TechNaom/git-actually'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install checker dependencies
+        run: pip install PyGithub PyYAML
+
+      - name: Run mission checker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -n "${{ github.event.inputs.mission }}" ]; then
+            python .github/scripts/check_mission.py --mission "${{ github.event.inputs.mission }}"
+          else
+            python .github/scripts/check_mission.py
+          fi
