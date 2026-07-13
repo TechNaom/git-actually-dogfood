@@ -10,7 +10,7 @@ Bot-updated -- don't hand-edit the checkmarks.
 - [x] Mission 05: CI runs on your PR
 - [x] Mission 06: Real code review
 - [x] Mission 07: Merge & clean up
-- [ ] Mission 08: Matrix builds
+- [x] Mission 08: Matrix builds
 - [ ] Mission 09: Caching & a second check
 - [ ] Mission 10: Build artifacts
 - [ ] Mission 11: Environments & secrets
