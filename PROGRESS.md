@@ -8,7 +8,7 @@ Bot-updated -- don't hand-edit the checkmarks.
 - [x] Mission 03: Handle a real merge conflict
 - [x] Mission 04: Push & open a real PR
 - [x] Mission 05: CI runs on your PR
-- [ ] Mission 06: Real code review
+- [x] Mission 06: Real code review
 - [ ] Mission 07: Merge & clean up
 - [ ] Mission 08: Matrix builds
 - [ ] Mission 09: Caching & a second check
