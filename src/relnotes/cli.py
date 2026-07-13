@@ -40,9 +40,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--date", default=None, help="ISO date, e.g. 2026-01-05 (default: today)"
     )
 
-    subparsers.add_parser("list", help="list all recorded entries")
-    # NOTE: no --category flag here yet -- core.list_entries() already
-    # supports filtering, the CLI just doesn't expose it. Deliberate gap.
+    list_parser = subparsers.add_parser("list", help="list all recorded entries")
+    list_parser.add_argument(
+        "--category",
+        choices=VALID_CATEGORIES,
+        default=None,
+        help="only show entries in this category",
+    )
 
     render_parser = subparsers.add_parser("render", help="render entries as a changelog document")
     render_parser.add_argument(
@@ -64,9 +68,12 @@ def _cmd_add(args: argparse.Namespace) -> None:
 
 
 def _cmd_list(args: argparse.Namespace) -> None:
-    entries = list_entries(path=args.file)
+    entries = list_entries(path=args.file, category=args.category)
     if not entries:
-        print('No entries yet. Add one with: relnotes add "..." --category added')
+        if args.category:
+            print(f"No entries in category {args.category!r}.")
+        else:
+            print('No entries yet. Add one with: relnotes add "..." --category added')
         return
     for entry in entries:
         print(f"[{entry.date}] {entry.category}: {entry.description}")
