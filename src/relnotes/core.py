@@ -90,8 +90,6 @@ def list_entries(path: Path = DEFAULT_STORE_PATH, category: str | None = None) -
     Return entries, sorted by date then category.
 
     If `category` is given, only entries in that category are returned.
-    The CLI doesn't expose this filter yet -- that's a deliberate gap for
-    an early mission to wire up.
     """
     entries = load_entries(path)
     if category is not None:
