@@ -70,3 +70,28 @@ jobs:
 
       - name: Run tests
         run: pytest -v
+
+  build:
+    name: Build package
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tool
+        run: pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: relnotes-dist
+          path: dist/
