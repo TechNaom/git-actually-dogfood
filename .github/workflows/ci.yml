@@ -28,7 +28,11 @@ jobs:
         run: ruff check .
 
   test:
-    name: Test
+    name: Test (Python ${{ matrix.python-version }})
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -37,7 +41,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
           cache: "pip"
           cache-dependency-path: requirements-dev.txt
 
