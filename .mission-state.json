@@ -6,9 +6,10 @@
     3,
     4,
     5,
-    6
+    6,
+    7
   ],
-  "current_mission": 7,
+  "current_mission": 8,
   "feature_branch": "feature/add-category-field",
   "pr_number": 2
 }
